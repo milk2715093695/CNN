@@ -33,6 +33,7 @@ def main() -> None:
     load_path = Config.MODEL_LOAD_PATH
     save_path = Config.MODEL_SAVE_PATH
     max_epoches = Config.MAX_EPOCHES
+    learning_rate = Config.LEARNING_RATE
     patience = Config.PATIENCE
 
     # 初始化模型、损失函数和优化器
@@ -40,7 +41,7 @@ def main() -> None:
     
     if Config.LOAD_MODEL:
         logger.info("准备加载模型\n")
-        model.load_state_dict(torch.load(load_path, weights_only=True))
+        model.load_state_dict(torch.load(load_path, weights_only=True, map_location=device))
         logger.info("模型加载成功！\n")
     else:
         logger.info("不加载模型\n")
@@ -64,7 +65,7 @@ def main() -> None:
     dataloader_test = DataLoader(dataset_test, batch_size=batch_size, timeout=0, shuffle=False)
 
     criterion = nn.CrossEntropyLoss()
-    optimizer = optim.Adam(model.parameters())
+    optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
     loss_history, acc_history = train_and_judge(
         model, 

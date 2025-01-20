@@ -15,8 +15,11 @@ class Config:
     MODEL_LOAD_PATH = Path("./models/MNIST.pth")
     MODEL_SAVE_PATH = Path("./models/MNIST.pth")
     DEVICE = "mps" if torch.backends.mps.is_available() else "cpu"
+
+    # 训练配置
     NUM_EPOCHES = 10
     MAX_EPOCHES = 100
+    LEARNING_RATE = 0.001
     PATIENCE = 10
 
     # 线程配置
