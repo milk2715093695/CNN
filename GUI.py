@@ -1,6 +1,7 @@
 import torch
 import tkinter as tk
 from typing import List
+from src.config import Config
 from PIL import Image, ImageDraw, ImageTk
 from src.models.CNN import CNN_MNIST as CNN
 from src.data.transforms import transform_data
@@ -225,15 +226,20 @@ class HandwrittenDigitRecognition:
         self.display_image()
 
 if __name__ == "__main__":
+    # 读取配置
+    load_path = Config.MODEL_LOAD_PATH
+    img_dir = Config.IMG_DIR
+    width = Config.WIDTH
+
     model = CNN()
-    model.load_state_dict(torch.load("./models/MNIST.pth", weights_only=True))
+    model.load_state_dict(torch.load(load_path, weights_only=True))
 
     images = []
     for num in range(10):
-        image_path = f"images/28_28/{num}.png"
+        image_path = img_dir / f"{num}.png"
         image = Image.open(image_path)
         images.append(image)
 
     root = tk.Tk()
-    app = HandwrittenDigitRecognition(root, model, images)
+    app = HandwrittenDigitRecognition(root, model, images, canvas_width=width)
     root.mainloop()
