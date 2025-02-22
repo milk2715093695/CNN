@@ -1,0 +1,25 @@
+model:
+  name: "vanilla_cnn"
+  params: 
+    input_shape: [1, 28, 28]
+    conv_layers:
+      - out_channels: 32
+        kernel_size: 3
+        stride: 1
+        padding: 1
+        activate: "relu"
+      - out_channels: 64
+        kernel_size: 3
+        stride: 1
+        padding: 1
+        activate: "relu"
+      - out_channels: 128
+        kernel_size: 3
+        stride: 1
+        padding: 1
+        activate: "relu"
+    fc_layers:
+      - units: 512
+        activate: "relu"
+      - units: 10
+    dropout_rate: 0.5
