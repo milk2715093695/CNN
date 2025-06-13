@@ -12,7 +12,7 @@ class Config:
 
     # 模型配置
     LOAD_MODEL = False
-    MODEL_LOAD_PATH = Path("./models/MNIST.pth")
+    MODEL_LOAD_PATH = Path("./models/history/MNIST_99.06.pth")
     MODEL_SAVE_PATH = Path("./models/MNIST.pth")
     DEVICE = "mps" if torch.backends.mps.is_available() else "cpu"
 

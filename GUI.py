@@ -83,7 +83,7 @@ class HandwrittenDigitRecognition:
 
     def _create_slider(self) -> tk.Scale:
         """创建控制笔刷粗细的滑动条"""
-        slider = tk.Scale(self.root, from_=15, to=40, orient="horizontal", label="笔刷粗细", command=self.update_brush_width)
+        slider = tk.Scale(self.root, from_=5, to=50, orient="horizontal", label="笔刷粗细", command=self.update_brush_width)
         slider.set(self.drawing_width_default)
         slider.place(x=self.padding_horizontal, y=(self.canvas_height + self.square_size) // 2 + self.padding_vertical)
         return slider
